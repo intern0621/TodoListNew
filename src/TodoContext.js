@@ -1,7 +1,8 @@
 import React, { useReducer, createContext, useContext, useRef } from 'react';
 
-const initialTodos = JSON.parse(localStorage.getItem('todo') || '{}');
+const initialTodos = JSON.parse(localStorage.getItem('todo') || '[]');
 console.log(initialTodos);
+
 function todoReducer(state, action) {
   switch (action.type) {
     case 'CREATE':
@@ -23,8 +24,7 @@ const TodoNextIdContext = createContext();
 
 export function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  const nextId = useRef(1);
-  //nextId = Number(1);
+  const nextId = useRef(localStorage.length);
   return (
     <TodoStateContext.Provider value={state}>
       <TodoDispatchContext.Provider value={dispatch}>

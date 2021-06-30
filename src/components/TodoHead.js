@@ -36,6 +36,7 @@ function TodoHead() {
     month: 'long',
     day: 'numeric'
   });
+  
   const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
 
   return (

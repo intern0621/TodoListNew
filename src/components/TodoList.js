@@ -28,7 +28,7 @@ function TodoList() {
   return (
     <TodoListBlock>
       {todos.map(todo => (        
-        window.localStorage.setItem('todo', JSON.stringify(todos)),
+        //window.localStorage.setItem('todo', JSON.stringify(todos)),
         <TodoItem
           key = {todo.id}
           id = {todo.id}
