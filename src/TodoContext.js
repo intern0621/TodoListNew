@@ -1,9 +1,7 @@
 import React, { useReducer, createContext, useContext, useRef } from 'react';
 
-const initialTodos = [
-  
-];
-
+const initialTodos = JSON.parse(localStorage.getItem('todo') || '{}');
+console.log(initialTodos);
 function todoReducer(state, action) {
   switch (action.type) {
     case 'CREATE':
