@@ -13,16 +13,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  return (
-    <TodoProvider>
-      <GlobalStyle />
-      <TodoTemplate>
-        <TodoHead />
-        <TodoList />
-        <TodoCreate />
-      </TodoTemplate>
-    </TodoProvider>
-  );
+    return (
+      <TodoProvider>
+        <GlobalStyle />
+        <TodoTemplate>
+          <TodoHead />
+          <TodoList />
+          <TodoCreate />
+        </TodoTemplate>
+      </TodoProvider>
+    );
 }
 
 export default App;

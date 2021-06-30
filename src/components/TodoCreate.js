@@ -2,11 +2,11 @@
    react-icons에 있는 MdAdd 사용 => + 아이콘
    useState 사용 => 토글 가능한 open 값 생성  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import { useTodoDispatch, useTodoNextId, useTodoNextID } from '../TodoContext';
-
+import { useTodoDispatch, useTodoNextId } from '../TodoContext';
+import LocalStorage from '../LocalStorage';
 /* z-index : 아이콘들이 겹쳐 있을 때 제일 먼저 올 우선순위 결정 
    */
 const CircleButton = styled.button`
@@ -86,14 +86,21 @@ function TodoCreate() {
 
   /* useState가 true 이면 + 아이콘을 돌려서 x 표시를 보여주고 버튼을 빨간색으로 변경
   false 라면 원상태로 복구한다. */
+  /*
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
-
+  */
+  const [open, setOpen] = LocalStorage("open", false);
+  const [value, setValue] = LocalStorage("value", '');
+    
   const dispatch = useTodoDispatch();
   const nextId = useTodoNextId();
 
   const onToggle = () => setOpen(!open);
-  const onChange = e => setValue(e.target.value);
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
   const onSubmit = e => {
     e.preventDefault();
     dispatch({
@@ -109,17 +116,16 @@ function TodoCreate() {
     nextId.current += 1;
   };
   
-
   return (
     <>
       {open && (
-        <InsertFormPositioner>
+        <InsertFormPositioner>          
           <InsertForm onSubmit={onSubmit}>
             <Input
               autoFocus
               placeholder="할 일을 입력 후, Enter 를 누르세요"
               onChange={onChange}
-              value={value}
+              value={value}              
             />
           </InsertForm>
         </InsertFormPositioner>
