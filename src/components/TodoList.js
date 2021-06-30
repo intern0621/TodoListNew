@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem';
 import { useTodoState } from '../TodoContext';
+import LocalStorage from '../LocalStorage';
 /* flex:1 => 자신이 차지하고 있는 영역은 꽉 채운다. */
 /* overflow-y 세로의 내용이 더 길 때 어떻게 보일지 선택하는 속성 
    - visible : 특정 요소가 박스를 넘어가도 그대로 보여준다.
@@ -22,20 +23,21 @@ const TodoListBlock = styled.div `
 `;
 
 function TodoList() {
-  const todos = useTodoState();
-
+  const todos = useTodoState();  
+  // window.localStorage.setItem('todo', JSON.stringify(todos));
   return (
     <TodoListBlock>
-      {todos.map(todo => (
+      {todos.map(todo => (        
+        window.localStorage.setItem('todo', JSON.stringify(todos)),
         <TodoItem
           key = {todo.id}
           id = {todo.id}
           text = {todo.text}
           done = {todo.done}
-        />
+        />        
       ))}
     </TodoListBlock>
-  )
+  );
 }
 
 export default TodoList;

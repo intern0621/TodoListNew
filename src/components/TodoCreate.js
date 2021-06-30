@@ -86,13 +86,10 @@ function TodoCreate() {
 
   /* useState가 true 이면 + 아이콘을 돌려서 x 표시를 보여주고 버튼을 빨간색으로 변경
   false 라면 원상태로 복구한다. */
-  /*
+  
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
-  */
-  const [open, setOpen] = LocalStorage("open", false);
-  const [value, setValue] = LocalStorage("value", '');
-    
+
   const dispatch = useTodoDispatch();
   const nextId = useTodoNextId();
 
@@ -103,10 +100,11 @@ function TodoCreate() {
 
   const onSubmit = e => {
     e.preventDefault();
+
     dispatch({
       type: 'CREATE',
       todo: {
-        id: nextId.current,
+        id: nextId.current,        
         text: value,
         done: false
       }
