@@ -110,8 +110,9 @@
        nextId.current += 1;       
      };
 
+     /* todo context를 받아와 local storage에 저장 */
      const todos = useTodoState();
-     window.localStorage.setItem('todo', JSON.stringify(todos))
+     window.localStorage.setItem('todo', JSON.stringify(todos));
 
      return (
        <>
